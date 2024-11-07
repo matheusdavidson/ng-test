@@ -1,0 +1,78 @@
+<!-- Toolbar -->
+<div class="h-[120px] border-b border-gray-300 flex items-center px-4">
+    <div class="max-w-[940px] w-full mx-auto">
+        <h1 class="text-xl font-semibold text-gray-800">Add Mood</h1>
+        <p class="text-sm text-gray-500 mt-1">Record your pet's mood</p>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="max-w-[940px] mx-auto py-6">
+    <form
+        [formGroup]="moodForm"
+        (ngSubmit)="onSubmit()"
+        class="space-y-8 mt-10"
+    >
+        <!-- Date Field -->
+        <mat-form-field
+            appearance="outline"
+            class="w-full"
+        >
+            <mat-label>Date</mat-label>
+            <input
+                matInput
+                [matDatepicker]="picker"
+                formControlName="date"
+                placeholder="Select date"
+            >
+            <mat-datepicker-toggle
+                matSuffix
+                [for]="picker"
+            ></mat-datepicker-toggle>
+            <mat-datepicker #picker></mat-datepicker>
+        </mat-form-field>
+
+        <!-- Mood Field -->
+        <mat-form-field
+            appearance="outline"
+            class="w-full"
+        >
+            <mat-label>Mood</mat-label>
+            <mat-select
+                formControlName="mood"
+                placeholder="Select mood"
+            >
+                @for (item of moodOptions; track $index) {
+                <mat-option [value]="item">{{ item }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Pet Field -->
+        <mat-form-field
+            appearance="outline"
+            class="w-full"
+        >
+            <mat-label>Pet</mat-label>
+            <mat-select
+                formControlName="petName"
+                placeholder="Select pet"
+            >
+                @for (item of pets; track $index) {
+                <mat-option [value]="item">{{ item }}</mat-option>
+                }
+            </mat-select>
+        </mat-form-field>
+
+        <!-- Submit Button -->
+        <div class="flex items-center">
+            <button
+                class="bg-black text-white uppercase py-1 px-3 rounded-full font-semibold text-xs"
+                type="submit"
+                mat-raised-button
+                color="primary"
+                [disabled]="moodForm.invalid"
+            >Save</button>
+        </div>
+    </form>
+</div>

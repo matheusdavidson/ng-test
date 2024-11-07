@@ -1,0 +1,74 @@
+<!-- Toolbar -->
+<div class="h-[120px] border-b border-gray-300 flex items-center px-4">
+    <div class="max-w-[940px] w-full mx-auto">
+        <h1 class="text-xl font-semibold text-gray-800">Pets</h1>
+        <p class="text-sm text-gray-500 mt-1">Manage your pets here</p>
+    </div>
+</div>
+<!-- Main Content -->
+<div class="max-w-[940px] mx-auto py-6">
+    <form
+        [formGroup]="petForm"
+        (ngSubmit)="onSubmit()"
+        class="space-y-8 mt-10"
+    >
+        <!-- Name Field -->
+        <mat-form-field
+            appearance="outline"
+            class="w-full"
+        >
+            <mat-label>Pet Name</mat-label>
+            <input
+                matInput
+                formControlName="name"
+                placeholder="Enter pet's name"
+            />
+        </mat-form-field>
+
+        <!-- Animal Type and Breed Row -->
+        <div class="flex flex-wrap gap-4">
+            <!-- Animal Type Field -->
+            <mat-form-field
+                appearance="outline"
+                class="flex-1 min-w-[45%]"
+            >
+                <mat-label>Type of Animal</mat-label>
+                <mat-select
+                    formControlName="animalType"
+                    placeholder="Select type"
+                >
+                    @for (type of animalTypes; track $index) {
+                    <mat-option [value]="type">{{ type }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+
+            <!-- Breed Field -->
+            <mat-form-field
+                appearance="outline"
+                class="flex-1 min-w-[45%]"
+            >
+                <mat-label>Breed</mat-label>
+                <mat-select
+                    formControlName="breed"
+                    placeholder="Select breed"
+                >
+                    @for (breed of selectedBreeds; track $index) {
+                    <mat-option [value]="breed">{{ breed }}</mat-option>
+                    }
+                </mat-select>
+            </mat-form-field>
+        </div>
+
+        <!-- Submit Button -->
+        <div class="flex items-center">
+            <button
+                class="bg-black text-white uppercase py-1 px-3 rounded-full font-semibold text-xs"
+                type="submit"
+                mat-raised-button
+                color="primary"
+                [disabled]="petForm.invalid"
+            >Save</button>
+        </div>
+    </form>
+</div>

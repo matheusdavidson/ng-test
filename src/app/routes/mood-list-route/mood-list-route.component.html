@@ -1,0 +1,85 @@
+<!-- Toolbar -->
+<div class="h-[120px] border-b border-gray-300 flex items-center px-4">
+    <div class="max-w-[940px] w-full mx-auto flex items-center">
+        <div class="flex-1">
+            <h1 class="text-xl font-semibold text-gray-800">Moods</h1>
+            <p class="text-sm text-gray-500 mt-1">Track your pets mood</p>
+        </div>
+        <button
+            class="bg-black text-white uppercase py-1 px-3 rounded-full text-[10px] font-semibold"
+            [routerLink]="['/moods/add']"
+        >Add</button>
+    </div>
+</div>
+
+<!-- Main Content -->
+<div class="max-w-[940px] mx-auto py-6">
+    <!-- Search Bar -->
+    <div class="relative mt-10">
+        <svg
+            xmlns="http://www.w3.org/2000/svg"
+            class="h-5 w-5 text-gray-400 absolute left-3 top-1/2 transform -translate-y-1/2"
+            fill="none"
+            viewBox="0 0 24 24"
+            stroke="currentColor"
+        >
+            <path
+                stroke-linecap="round"
+                stroke-linejoin="round"
+                stroke-width="2"
+                d="M21 21l-6-6m2-5a7 7 0 11-14 0 7 7 0 0114 0z"
+            />
+        </svg>
+        <input
+            type="text"
+            placeholder="Search for straight matches..."
+            class="w-full pl-10 pr-4 py-2 text-sm border border-gray-300 rounded-full bg-transparent focus:outline-none focus:ring-2 focus:ring-gray-300 focus:border-transparent"
+            [formControl]="searchControl"
+        />
+    </div>
+
+    <!-- Mood List -->
+    <div class="mt-8">
+        @if (loading()) {
+        <div class="w-full flex items-center justify-center h-[300px]">
+            <mat-spinner [diameter]="32"></mat-spinner>
+        </div>
+        }
+        @else if(!moods().length) {
+        <div
+            class="mt-8 w-full bg-gray-100 rounded-lg p-6 flex flex-col items-center justify-center"
+            [routerLink]="['/mood/add']"
+        >
+            <svg
+                xmlns="http://www.w3.org/2000/svg"
+                class="h-12 w-12 text-gray-400 mb-4"
+                fill="none"
+                viewBox="0 0 24 24"
+                stroke="currentColor"
+            >
+                <path
+                    stroke-linecap="round"
+                    stroke-linejoin="round"
+                    stroke-width="2"
+                    d="M20 13V6a2 2 0 00-2-2H6a2 2 0 00-2 2v7m16 0v5a2 2 0 01-2 2H6a2 2 0 01-2-2v-5m16 0h-2.586a1 1 0 00-.707.293l-2.414 2.414a1 1 0 01-.707.293h-3.172a1 1 0 01-.707-.293l-2.414-2.414A1 1 0 006.586 13H4"
+                />
+            </svg>
+            <p class="text-base font-medium text-gray-900">Nothing to Show</p>
+            <button class="bg-black text-white uppercase py-1 px-3 rounded-full text-[10px] font-semibold mt-4">Add Now</button>
+        </div>
+        } @else {
+        <table class="w-full">
+            <tbody>
+                @for (item of moods(); track $index) {
+                <tr class="border-b border-gray-200">
+                    <td class="py-4 pr-4 w-14">
+                        <p class="font-semibold text-sm">{{ item.date | date }}</p>
+                        <p class="text-xs text-gray-500">{{ item.petName }} - {{ item.mood }}</p>
+                    </td>
+                </tr>
+                }
+            </tbody>
+        </table>
+        }
+    </div>
+</div>

@@ -1,0 +1,266 @@
+@use '@angular/material' as mat;
+@include mat.core();
+
+$light-primary: mat.m2-define-palette(mat.$m2-indigo-palette);
+$light-accent: mat.m2-define-palette(mat.$m2-deep-orange-palette);
+$light-warn: mat.m2-define-palette(mat.$m2-red-palette);
+
+$dark-primary: mat.m2-define-palette(mat.$m2-indigo-palette, 400, 900, 300);
+$dark-accent: mat.m2-define-palette(mat.$m2-deep-orange-palette, 300, A400, A100);
+$dark-warn: mat.m2-define-palette(mat.$m2-red-palette, 300, A700, A200);
+
+$light-theme: mat.m2-define-light-theme(
+    (
+        color: (
+            primary: $light-primary,
+            accent: $light-accent,
+            warn: $light-warn,
+        ),
+    )
+);
+
+$dark-theme: mat.m2-define-dark-theme(
+    (
+        color: (
+            primary: $dark-primary,
+            accent: $dark-accent,
+            warn: $dark-warn,
+        ),
+    )
+);
+
+@include mat.all-component-themes($light-theme);
+@include mat.form-field-density(-2);
+
+.dark {
+    @include mat.all-component-colors($dark-theme);
+}
+
+/* Fix */
+.mdc-notched-outline__notch {
+    border-right: none;
+}
+
+/* Customize outline form field */
+.mdc-text-field--outlined {
+    /* --mdc-outlined-text-field-container-shape: var(--border-radius) !important; */
+
+    input,
+    .mat-mdc-select-placeholder {
+        /* font-size: 14px !important; */
+    }
+}
+
+.mat-mdc-form-field {
+    @apply border-indigo-100 #{!important};
+}
+
+:root {
+    /* Form field */
+    .mdc-text-field--outlined {
+        line-height: 24px;
+    }
+
+    .mat-step-text-label {
+        @apply text-base;
+    }
+
+    --mdc-outlined-text-field-focus-outline-color: rgba(63, 81, 181, 0.6);
+    --mdc-outlined-text-field-hover-outline-color: rgba(0, 0, 0, 0.4);
+    --mdc-outlined-text-field-error-outline-color: rgba(244, 67, 54, 0.5);
+    --mdc-outlined-text-field-outline-color: rgba(0, 0, 0, 0.17);
+    .page-card {
+        --mdc-outlined-text-field-outline-color: rgba(225, 229, 232, 0.9);
+    }
+    --mat-select-panel-background-color: var(--content-panel-overlay);
+
+    /* Accordion/expansion */
+    --mat-expansion-container-background-color: var(--content-overlay);
+    --mat-expansion-container-text-color: inherit;
+    --mat-expansion-header-text-color: inherit;
+    --mat-expansion-header-collapsed-state-height: 58px;
+
+    /* Radio */
+    .mat-mdc-radio-button .mdc-form-field {
+        color: inherit;
+    }
+
+    .mat-accordion .mat-expansion-panel:first-of-type {
+        border-top-right-radius: var(--border-radius);
+        border-top-left-radius: var(--border-radius);
+    }
+
+    .mat-accordion .mat-expansion-panel:last-of-type {
+        border-bottom-right-radius: var(--border-radius);
+        border-bottom-left-radius: var(--border-radius);
+    }
+    .mat-expansion-panel-header-title {
+        @apply text-base;
+    }
+
+    /* Modal */
+    .cdk-overlay-dark-backdrop {
+        @apply bg-gray-900/50 bg-black/70 #{!important};
+        /* background-color: dark:bg-[var(--content-overlay)] dark:bg-opacity-50; */
+    }
+
+    /* Menu */
+    .mat-elevation-z8,
+    .mat-mdc-elevation-specific.mat-elevation-z8 {
+        box-shadow: rgba(145, 158, 171, 0.24) 0px 0px 2px 0px, rgba(145, 158, 171, 0.24) -20px 20px 40px -4px;
+    }
+
+    /* Stepper */
+    --mat-stepper-header-hover-state-layer-color: rgb(55 65 81 / 0.1);
+    --mat-stepper-header-focus-state-layer-color: rgb(55 65 81 / 0.1);
+}
+
+.dark {
+    /* Form field */
+    --mdc-outlined-text-field-input-text-color: rgba(255, 255, 255, 0.8);
+    --mdc-outlined-text-field-input-text-placeholder-color: rgba(255, 255, 255, 0.5);
+    --mat-select-placeholder-text-color: rgba(255, 255, 255, 0.5);
+    --mdc-outlined-text-field-outline-color: rgba(75, 85, 99, 0.4);
+    .page-card {
+        --mdc-outlined-text-field-outline-color: rgba(75, 85, 99, 0.4);
+    }
+    --mdc-outlined-text-field-hover-outline-color: rgba(75, 85, 99, 0.94);
+    --mdc-outlined-text-field-focus-outline-color: rgba(110, 129, 217, 0.7);
+    --mdc-outlined-text-field-focus-label-text-color: rgba(110, 129, 217, 1);
+    --mat-option-selected-state-label-text-color: rgba(110, 129, 217, 1);
+    --mat-select-focused-arrow-color: rgba(110, 129, 217, 0.7);
+    --mat-option-selected-state-label-text-color: rgba(110, 129, 217, 1);
+    /*.mat-primary .mat-pseudo-checkbox-checked.mat-pseudo-checkbox-minimal::after,
+    .dark .mat-primary .mat-pseudo-checkbox-indeterminate.mat-pseudo-checkbox-minimal::after {
+        color: rgba(110, 129, 217, 1);
+    } */
+
+    --mdc-outlined-text-field-error-outline-color: rgba(249, 128, 128, 0.5);
+    --mdc-outlined-text-field-error-focus-outline-color: rgba(249, 128, 128, 0.7);
+    --mdc-outlined-text-field-error-hover-outline-color: rgba(249, 128, 128, 0.7);
+    --mdc-outlined-text-field-error-label-text-color: rgba(249, 128, 128, 0.7);
+    --mdc-outlined-text-field-error-focus-label-text-color: rgba(249, 128, 128, 1);
+    --mdc-outlined-text-field-outline-color: rgba(75, 85, 99, 0.5);
+    --mat-select-panel-background-color: var(--content-panel-overlay);
+
+    /* Autocomplete */
+    --mat-autocomplete-background-color: var(--content-panel-overlay);
+    --mat-option-selected-state-layer-color: rgba(255, 255, 255, 0.04);
+
+    /* Radio */
+    .mat-mdc-radio-button .mdc-form-field {
+        color: inherit;
+    }
+
+    /* Accordion/expansion */
+    --mat-expansion-container-text-color: inherit;
+    --mat-expansion-header-text-color: inherit;
+    .mat-expansion-panel-header-title {
+        @apply text-base;
+    }
+
+    /* Menu */
+    .mat-elevation-z8,
+    .mat-mdc-elevation-specific.mat-elevation-z8 {
+        box-shadow: rgba(0, 0, 0, 0.24) 0px 0px 2px 0px, rgba(0, 0, 0, 0.24) -20px 20px 40px -4px;
+    }
+
+    /* Stepper */
+    --mat-stepper-container-color: var(--content-overlay);
+    --mat-stepper-header-hover-state-layer-color: rgba(255, 255, 255, 0.04);
+    --mat-stepper-header-focus-state-layer-color: rgba(255, 255, 255, 0.04);
+    --mat-stepper-header-selected-state-label-text-color: rgba(255, 255, 255, 0.6);
+    .mat-step-icon-selected,
+    .mat-step-icon-state-edit {
+        --mat-stepper-header-selected-state-icon-background-color: rgba(249, 115, 22, 0.9);
+        --mat-stepper-header-done-state-icon-background-color: rgba(249, 115, 22, 0.9);
+        --mat-stepper-header-edit-state-icon-background-color: rgba(249, 115, 22, 0.9);
+    }
+
+    --mat-stepper-header-icon-background-color: rgba(255, 255, 255, 0.6);
+}
+
+:root,
+.dark {
+    /* Form field */
+    --mat-form-field-container-text-size: 14px;
+    --mdc-outlined-text-field-container-shape: var(--border-radius);
+    --mat-select-trigger-text-size: 14px;
+    --mat-option-label-text-size: 14px;
+
+    .mat-icon[matprefix] {
+        @apply h-[20px] w-[auto] pr-2 #{!important};
+        @apply text-[20px] ml-1;
+    }
+
+    /* Modal */
+    --mdc-dialog-container-shape: var(--border-radius-large);
+    --mdc-dialog-container-color: var(--content-panel-overlay);
+
+    /* Menu */
+    --mat-menu-container-color: var(--content-panel-overlay);
+    --mat-menu-container-shape: var(--border-radius);
+    --mat-menu-item-label-text-color: inherit;
+    .mat-mdc-menu-content {
+        @apply py-2;
+    }
+    .mat-mdc-menu-item {
+        min-height: 34px;
+    }
+
+    .transparent-field {
+        --mdc-outlined-text-field-error-outline-color: rgba(0, 0, 0, 0);
+        --mdc-outlined-text-field-error-focus-outline-color: rgba(0, 0, 0, 0);
+        --mdc-outlined-text-field-error-hover-outline-color: rgba(0, 0, 0, 0);
+        --mdc-outlined-text-field-outline-color: rgba(0, 0, 0, 0);
+        --mdc-outlined-text-field-hover-outline-color: rgba(0, 0, 0, 0);
+        --mdc-outlined-text-field-focus-outline-color: rgba(0, 0, 0, 0);
+    }
+}
+
+/* fixes for reset css */
+:root,
+.dark {
+    [type='text'],
+    [type='email'],
+    [type='url'],
+    [type='password'],
+    [type='number'],
+    [type='date'],
+    [type='datetime-local'],
+    [type='month'],
+    [type='search'],
+    [type='tel'],
+    [type='time'],
+    [type='week'],
+    [multiple],
+    textarea,
+    select {
+        background-color: inherit;
+
+        &:focus:not([class*='ring']) {
+            @apply ring-0;
+        }
+    }
+}
+
+/* Fix for min-width */
+.mat-fix-min-width {
+    .mat-mdc-form-field-infix {
+        width: auto;
+    }
+}
+
+.field-outline {
+    border-color: var(--mdc-outlined-text-field-outline-color) !important;
+    border-radius: var(--mdc-outlined-text-field-container-shape) !important;
+    @apply border border-solid;
+}
+
+.ms-white {
+    --mdc-circular-progress-active-indicator-color: rgba(255, 255, 255, 0.87);
+}
+
+mat-error {
+    @apply text-xs;
+}

@@ -1,1 +1,46 @@
 /* You can add global styles to this file, and also import other style files */
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@import 'm3-theme';
+
+html,
+body {
+    height: 100%;
+}
+body {
+    margin: 0;
+    font-family: 'Inter+Tight', 'Helvetica Neue', sans-serif;
+}
+
+app-root {
+    @apply flex;
+}
+
+app-protected-route {
+    @apply flex-1;
+}
+
+
+:root {
+    --main-bg: #f4f6f8;
+    --border-radius: 10px;
+    --border-radius-large: 16px;
+    --content-overlay: #ffffff;
+    --content-panel-overlay: #ffffff;
+    --content-panel-overlay-rgb: 255, 255, 255;
+    --content-shadow-color: rgba(145, 158, 171, 0.16);
+    --content-shadow-position: 0px 2px 6px 0px;
+    --content-shadow: var(--content-shadow-color) var(--content-shadow-position);
+}
+
+.dark {
+    --main-bg: #0f1014;
+    --content-overlay: #15171c;
+    /* --content-overlay: #181a20; */
+    --content-panel-overlay: #23262f;
+    --content-panel-overlay-rgb: 35, 38, 47;
+    --content-shadow-color: rgba(0, 0, 0, 0.16);
+    --content-shadow: var(--content-shadow-color) var(--content-shadow-position);
+}
